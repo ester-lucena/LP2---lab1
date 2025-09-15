@@ -1,7 +1,7 @@
-package sal.e.luz.sistema;
+package saleluz.sistema;
 
-import sal.e.luz.pedido.Item;
-import sal.e.luz.pedido.Pedido;
+import saleluz.pedido.Item;
+import saleluz.pedido.Pedido;
 
 public class LinkedList {
 	private Node head;

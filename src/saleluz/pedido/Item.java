@@ -1,4 +1,4 @@
-package sal.e.luz.pedido;
+package saleluz.pedido;
 
 public class Item {
 	private String nome_item;

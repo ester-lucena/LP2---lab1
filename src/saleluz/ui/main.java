@@ -1,10 +1,10 @@
-package sal.e.luz.ui;
+package saleluz.ui;
 
 import java.util.Scanner;
 
-import sal.e.luz.pedido.Item;
-import sal.e.luz.pedido.Pedido;
-import sal.e.luz.sistema.LinkedList;
+import saleluz.pedido.Item;
+import saleluz.pedido.Pedido;
+import saleluz.sistema.LinkedList;
 
 public class main {
 

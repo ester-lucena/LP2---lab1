@@ -1,4 +1,4 @@
-package sal.e.luz.pedido;
+package saleluz.pedido;
 
 import java.util.ArrayList;
 

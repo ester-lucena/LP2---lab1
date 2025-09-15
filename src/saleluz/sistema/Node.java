@@ -1,6 +1,6 @@
-package sal.e.luz.sistema;
+package saleluz.sistema;
 
-import sal.e.luz.pedido.Pedido;
+import saleluz.pedido.Pedido;
 
 public class Node {
 	private Pedido info;
