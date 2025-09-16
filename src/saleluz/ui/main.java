@@ -17,52 +17,111 @@ public class main {
 		
 		LinkedList lista = new LinkedList();
 		
-		int n1;
+		String n1;
+		int número;
 		do {
 			System.out.println("\n Menu principal:\n"
 					+ "     1. Registrar Pedido.\n"
 					+ "     2. Remover Pedido.\n"
 					+ "     3. Listar Pedidos.\n"
 					+ "     4. Sair.\n");
-			System.out.println("--------------------------------------------------------");
-			System.out.print("O que você deseja executar(digite o número respectivo)? ");
-			System.out.println("\n--------------------------------------------------------");
-			n1 = leitor.nextInt();
 			
-			leitor.nextLine();
+			do {
+				System.out.println("--------------------------------------------------------");
+				System.out.print("O que você deseja executar(digite o número respectivo)? ");
+				System.out.println("\n--------------------------------------------------------");
+				n1 = leitor.nextLine();
+				
+				if(n1.matches("\\d+")) {
+					número = Integer.parseInt(n1);
+					break;
+				} else {
+			        System.out.println("Entrada inválida: digite apenas números.");
+			    }
+			} while(true);
 			
-			switch(n1) {
+			switch(número) {
 			case 1:
 				Pedido pedido = new Pedido();
 				lista.adicionar_pedido(pedido);
 				
-				System.out.print("Qual o seu nome? ");
-				String nome_cliente = leitor.nextLine();
+				String nome_cliente;
+				do {
+					System.out.print("Qual o seu nome? ");
+					nome_cliente = leitor.nextLine();
+					
+					if(nome_cliente.matches("[a-zA-ZáéíóúãõâêôçÁÉÍÓÚÃÕÂÊÔÇ ]+")) {
+						break;
+					} else {
+						System.out.println("Entrada inválida: apenas texto é permitido.");
+					}
+				}while(true);
+		
 				pedido.setNome_cliente(nome_cliente);
 				
-				System.out.printf("Olá %s, quantos itens serão adicionados ao pedido? ", pedido.getNome_cliente());
-				int n2 = leitor.nextInt();
+				do {
+					System.out.printf("Olá %s, quantos itens serão adicionados ao pedido? ", pedido.getNome_cliente());
+					String n2 = leitor.nextLine();
+					
+					if(n2.matches("\\d+")) {
+						número = Integer.parseInt(n2);
+						break;
+					} else {
+						System.out.println("Entrada inválida: digite apenas números.");
+					}
+				} while(true);
 				
-				leitor.nextLine();
 				
-				for(int i = 1; i <= n2; i++) {
+				for(int i = 1; i <= número; i++) {
 					Item item = new Item();
 					
-					if(n2 == 1) {
-						System.out.print("Qual o nome do item? ");
-						String nome_item = leitor.nextLine();
+					String nome_item;
+					if(número == 1) {
+						do {
+							System.out.print("Qual o nome do item? ");
+							nome_item = leitor.nextLine();
+							
+							if(nome_item.matches("[a-zA-ZáéíóúãõâêôçÁÉÍÓÚÃÕÂÊÔÇ ]+")) {
+								break;
+							} else {
+								System.out.println("Entrada inválida: apenas texto é permitido.");
+							}
+							
+						} while(true);
+						
 						item.setNome_item(nome_item);
 					} else {
-						System.out.printf("Qual o nome do %d° item? ", i);
-						String nome_item = leitor.nextLine();
+						do {
+							System.out.printf("Qual o nome do %d° item? ", i);
+							nome_item = leitor.nextLine();
+							
+							if(nome_item.matches("[a-zA-ZáéíóúãõâêôçÁÉÍÓÚÃÕÂÊÔÇ ]+")) {
+								break;
+							} else {
+								System.out.println("Entrada inválida: apenas texto é permitido.");
+							}
+							
+						} while(true);
+					
 						item.setNome_item(nome_item);
 					}
 					
-					System.out.printf("Digite o preço do item %s: ", item.getNome_item());
-					double preço_item = leitor.nextDouble();
-					item.setPreço_item(preço_item);
-					
-					leitor.nextLine();
+					double valor;
+					do {
+						System.out.printf("Digite o preço do item %s: ", item.getNome_item());
+						String preço_item = leitor.nextLine();
+						
+						preço_item = preço_item.replace(",", ".");
+						
+						if(preço_item.matches("\\d+(\\.\\d{1,2})?")) {
+							valor = Double.parseDouble(preço_item);
+							break;
+						} else {
+							System.out.println("Entrada inválida: digite apenas o preço.");
+						}
+						
+					} while(true);
+					item.setPreço_item(valor);
 					
 					pedido.adicionar_item(item);
 				}
@@ -75,7 +134,7 @@ public class main {
 				}
 				
 				System.out.println("\n========================================"); 
-				System.out.println("    Restaurante Sal&Luz    "); 
+				System.out.println("          Restaurante Sal&Luz    "); 
 				System.out.println("========================================"); 
 				System.out.println("Pedido N°: " + pedido.getId_pedido()); 
 				System.out.println("Cliente: " + pedido.getNome_cliente()); 
@@ -85,11 +144,11 @@ public class main {
 				double valor_total = 0.0;
 				
 				for(Item item : pedido.getItens()) {
-					System.out.printf("-" + item.getNome_item() + " R$ %.2f%n", item.getPreço_item());
+					System.out.println("-" + item.getNome_item() + " R$ " + item.getPreço_item());
 					valor_total += item.getPreço_item();
 				}
 				System.out.println("----------------------------------------"); 
-				System.out.printf("Total: R$ %.2f%n", valor_total); 
+				System.out.println("Total: R$ " + valor_total); 
 				System.out.println("========================================"); 
 				System.out.println("   Obrigado pela preferência! :)    "); 
 				System.out.println("========================================");
@@ -97,16 +156,32 @@ public class main {
 				break;
 				
 			case 2:
-				System.out.print("Qual o id do pedido a ser removido? ");
-				int id_pedido = leitor.nextInt();
-				leitor.nextLine();
+				do {
+					System.out.print("Qual o id do pedido a ser removido? ");
+					String id_pedido = leitor.nextLine();
+					
+					if(id_pedido.matches("\\d+")) {
+						número = Integer.parseInt(id_pedido);
+						break;
+					} else {
+						System.out.println("Entrada inválida: digite apenas números.");
+					}
+					
+				} while(true);
 				
-				lista.remover_pedido(id_pedido);
+				lista.remover_pedido(número);
 				
 				break;
 				
 			case 3:
-				System.out.println("Segue a lista de pedidos:");
+				System.out.println("Imprimindo a lista de pedidos......");
+				
+				try {
+					Thread.sleep(3000);
+				} catch(InterruptedException e) {
+					System.out.println("Erro na pausa");
+				}
+				
 				lista.exibir_pedidos();
 				
 				break;
@@ -122,7 +197,7 @@ public class main {
 					
 			} 
 			
-		} while(n1 != 4);		
+		} while(número != 4);		
 		
 	}
 
