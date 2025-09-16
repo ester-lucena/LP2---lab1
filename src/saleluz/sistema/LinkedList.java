@@ -44,6 +44,7 @@ public class LinkedList {
 			System.out.printf("o pedido %d não existe\n", id);
 		} else {
 			atual_node.setProx(atual_node.getProx().getProx());
+			System.out.println("Pedido removido com sucesso!");
 		}
 	}
 	
@@ -57,19 +58,26 @@ public class LinkedList {
 		while(atual_node != null){
 			System.out.println("\n========================================"); 
 			System.out.println("Pedido ID:" + atual_node.getInfo().getId_pedido());
+			try {
+				Thread.sleep(3000);
+			} catch(InterruptedException e) {
+				System.out.println("Erro na pausa");
+			}
 			System.out.println("Cliente:" + atual_node.getInfo().getNome_cliente());
 			System.out.println("----------------------------------------"); 
 			System.out.println("Itens:");
 			double valor_total = 0.0;
 			
 			for(Item item : atual_node.getInfo().getItens()) {
-				System.out.printf("-" + item.getNome_item() + " R$ %.2f%n", item.getPreço_item());
+				System.out.println("-" + item.getNome_item() + " R$ " + item.getPreço_item());
 				valor_total += item.getPreço_item();
 			}
 			System.out.println("----------------------------------------"); 
-			System.out.printf("Total: R$ %.2f%n", valor_total); 
+			System.out.println("Total: R$ " + valor_total); 
 		
 			atual_node = atual_node.getProx();
+			
+			
 		}
 	}
 	
