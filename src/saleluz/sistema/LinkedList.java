@@ -63,9 +63,9 @@ public class LinkedList {
 			System.out.println("\n========================================"); 
 			System.out.println("Pedido ID:" + atual_node.getInfo().getId_pedido());
 			
-			//pausa de 3 segundos entre os pedidos
+			//pausa de 2 segundos entre os pedidos
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 			} catch(InterruptedException e) {
 				System.out.println("Erro na pausa");
 			}
@@ -82,7 +82,7 @@ public class LinkedList {
 			System.out.println("----------------------------------------"); 
 			System.out.println("Total: R$ " + valor_total); 
 			
-			//passa para o próximo peddido
+			//passa para o próximo pedido
 			atual_node = atual_node.getProx();
 			
 		}
