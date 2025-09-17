@@ -5,7 +5,6 @@ import saleluz.pedido.Pedido;
 public class Node {
 	private Pedido info;
 	private Node prox;
-	
 
 	public Node(Pedido info) {
 		this.info = info;

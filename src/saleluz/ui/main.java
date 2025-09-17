@@ -19,14 +19,14 @@ public class main {
 		
 		String n1;
 		int número;
-		do {
+		do { //chama o menu até a opção 4 ser escolhida
 			System.out.println("\n Menu principal:\n"
 					+ "     1. Registrar Pedido.\n"
 					+ "     2. Remover Pedido.\n"
 					+ "     3. Listar Pedidos.\n"
 					+ "     4. Sair.\n");
 			
-			do {
+			do { //permite que só números inteiros positivos sejam digitados
 				System.out.println("--------------------------------------------------------");
 				System.out.print("O que você deseja executar(digite o número respectivo)? ");
 				System.out.println("\n--------------------------------------------------------");
@@ -46,7 +46,7 @@ public class main {
 				lista.adicionar_pedido(pedido);
 				
 				String nome_cliente;
-				do {
+				do { //permite que só texto seja digitado
 					System.out.print("Qual o seu nome? ");
 					nome_cliente = leitor.nextLine();
 					
@@ -59,7 +59,7 @@ public class main {
 		
 				pedido.setNome_cliente(nome_cliente);
 				
-				do {
+				do { //permite que só números inteiros positivos sejam digitados
 					System.out.printf("Olá %s, quantos itens serão adicionados ao pedido? ", pedido.getNome_cliente());
 					String n2 = leitor.nextLine();
 					
@@ -71,13 +71,13 @@ public class main {
 					}
 				} while(true);
 				
-				
+				//adiciona os itens escolhidos pelo cliente
 				for(int i = 1; i <= número; i++) {
 					Item item = new Item();
 					
 					String nome_item;
 					if(número == 1) {
-						do {
+						do { //permite que só texto seja digitado
 							System.out.print("Qual o nome do item? ");
 							nome_item = leitor.nextLine();
 							
@@ -89,9 +89,8 @@ public class main {
 							
 						} while(true);
 						
-						item.setNome_item(nome_item);
 					} else {
-						do {
+						do { //permite que só texto seja digitado
 							System.out.printf("Qual o nome do %d° item? ", i);
 							nome_item = leitor.nextLine();
 							
@@ -103,11 +102,11 @@ public class main {
 							
 						} while(true);
 					
-						item.setNome_item(nome_item);
 					}
+					item.setNome_item(nome_item);
 					
 					double valor;
-					do {
+					do { //permite que só números positivos, com até 2 casas decimais, sejam digitados
 						System.out.printf("Digite o preço do item %s: ", item.getNome_item());
 						String preço_item = leitor.nextLine();
 						
@@ -117,7 +116,7 @@ public class main {
 							valor = Double.parseDouble(preço_item);
 							break;
 						} else {
-							System.out.println("Entrada inválida: digite apenas o preço.");
+							System.out.println("Entrada inválida: digite um preço válido.");
 						}
 						
 					} while(true);
@@ -127,6 +126,7 @@ public class main {
 				}
 				System.out.println("\nImprimindo nota fiscal.....");
 				
+				//pausa de 3 segundos para imprimir a nota fiscal
 				try {
 					Thread.sleep(3000);
 				} catch(InterruptedException e) {
@@ -156,7 +156,7 @@ public class main {
 				break;
 				
 			case 2:
-				do {
+				do { //permite que só números inteiros positivos sejam digitados
 					System.out.print("Qual o id do pedido a ser removido? ");
 					String id_pedido = leitor.nextLine();
 					
@@ -164,7 +164,7 @@ public class main {
 						número = Integer.parseInt(id_pedido);
 						break;
 					} else {
-						System.out.println("Entrada inválida: digite apenas números.");
+						System.out.println("Entrada inválida:digite apenas números.");
 					}
 					
 				} while(true);
@@ -176,6 +176,7 @@ public class main {
 			case 3:
 				System.out.println("Imprimindo a lista de pedidos......");
 				
+				//pausa de 3 segundos para imprimir os pedidos
 				try {
 					Thread.sleep(3000);
 				} catch(InterruptedException e) {
