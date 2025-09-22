@@ -60,7 +60,7 @@ public class LinkedList {
 		Node atual_node = first;
 		//percorre a lista e imprime os pedidos
 		while(atual_node != null){
-			System.out.println("\n========================================"); 
+			System.out.println("\n========================================\n"); 
 			System.out.println("Pedido ID:" + atual_node.getInfo().getId_pedido());
 			
 			//pausa de 2 segundos entre os pedidos
@@ -76,7 +76,7 @@ public class LinkedList {
 			double valor_total = 0.0;
 			
 			for(Item item : atual_node.getInfo().getItens()) {
-				System.out.println("-" + item.getNome_item() + " R$ " + item.getPreço_item());
+				System.out.printf("-" + item.getNome_item() + " R$ %.2f%n", item.getPreço_item());
 				valor_total += item.getPreço_item();
 			}
 			System.out.println("----------------------------------------"); 

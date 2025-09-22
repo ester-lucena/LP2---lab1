@@ -114,6 +114,7 @@ public class main {
 						
 						if(preço_item.matches("\\d+(\\.\\d{1,2})?")) {
 							valor = Double.parseDouble(preço_item);
+							preço_item = preço_item.replace(".", ",");
 							break;
 						} else {
 							System.out.println("Entrada inválida: digite um preço válido.");
@@ -148,7 +149,7 @@ public class main {
 					valor_total += item.getPreço_item();
 				}
 				System.out.println("----------------------------------------"); 
-				System.out.println("Total: R$ " + valor_total); 
+				System.out.printf("Total: R$ %.2f%n", valor_total); 
 				System.out.println("========================================"); 
 				System.out.println("   Obrigado pela preferência! :)    "); 
 				System.out.println("========================================");
